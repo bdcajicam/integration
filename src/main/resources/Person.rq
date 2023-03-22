@@ -1,0 +1,19 @@
+prefix ab: <http://learningsparql.com/ns/addressbook#> 
+prefix d: <http://learningsparql.com/ns/data#> 
+insert data {
+    d:i0432 a d:Person ;
+    		ab:firstName "Richard" ;
+        	ab:lastName "Mutt" ;
+    		ab:homeTel "(229) 276-5135" ;
+    		ab:email "richard49@hotmail.com" .
+    d:i9771 a d:Person ;
+    		ab:firstName "Cindy" ;
+    		ab:lastName "Marshall" ;
+    		ab:homeTel "(245) 646-5488" ;
+    		ab:email "cindym@gmail.com" .
+    d:i8301 a d:Person ;  
+   			ab:firstName "Craig" ;
+    		ab:lastName "Ellis" ;
+    		ab:email "craigellis@yahoo.com" ;
+    		ab:email "c.ellis@usairwaysgroup.com" .
+}
