@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.sparqlbuilder.core.SparqlBuilder;
 import org.eclipse.rdf4j.sparqlbuilder.core.Variable;
-import org.eclipse.rdf4j.spring.demo.model.Artist;
 
 import java.util.Objects;
 
