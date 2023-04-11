@@ -33,7 +33,9 @@ public class PersonDao extends SimpleRDF4JCRUDDao<Person, IRI>  {
     protected void populateBindingsForUpdate(MutableBindings bindingsBuilder, Person person) {
         bindingsBuilder
                 .add(PERSON_FIRST_NAME, person.getFirstName())
-                .add(PERSON_LAST_NAME, person.getLastName());
+                .add(PERSON_LAST_NAME, person.getLastName())
+                .addMaybe(PERSON_HOME_TEL, person.getHomeTel()) //Valor opcional
+                .addMaybe(PERSON_EMAIL, person.getEmail()); //Valor opcional
     }
 
     @Override
@@ -43,6 +45,11 @@ public class PersonDao extends SimpleRDF4JCRUDDao<Person, IRI>  {
         person.setId(QueryResultUtils.getIRI(querySolution, PERSON_ID));
         person.setFirstName(QueryResultUtils.getString(querySolution, PERSON_FIRST_NAME));
         person.setLastName(QueryResultUtils.getString(querySolution, PERSON_LAST_NAME));
+        //Valores opcionales
+        if (querySolution.hasBinding(PERSON_HOME_TEL.getVarName()))
+            person.setHomeTel(QueryResultUtils.getString(querySolution, PERSON_HOME_TEL));
+        if (querySolution.hasBinding(PERSON_EMAIL.getVarName()))
+            person.setEmail(QueryResultUtils.getString(querySolution, PERSON_EMAIL));
         return person;
     }
 
@@ -52,12 +59,14 @@ public class PersonDao extends SimpleRDF4JCRUDDao<Person, IRI>  {
     protected String getReadQuery() {
         return "PREFIX ab: <http://learningsparql.com/ns/addressbook#> " +
                 "PREFIX d: <http://learningsparql.com/ns/data#> " +
-                "SELECT ?person_id ?person_firstName ?person_lastName " +
+                "SELECT ?person_id ?person_firstName ?person_lastName ?person_homeTel ?person_email " +
                 "WHERE " +
                 "{ " +
-                    "?person_id a d:Person ; " +
-                    "ab:firstName ?person_firstName ; " +
-                    "ab:lastName ?person_lastName . " +
+                "   ?person_id a d:Person ; " +
+                "           ab:firstName ?person_firstName ; " +
+                "           ab:lastName ?person_lastName . " +
+                "    OPTIONAL { ?person_id ab:homeTel ?person_homeTel . } " +
+                "    OPTIONAL { ?person_id ab:email ?person_email . } " +
                 "}";
     }
 
@@ -66,8 +75,9 @@ public class PersonDao extends SimpleRDF4JCRUDDao<Person, IRI>  {
     protected NamedSparqlSupplier getInsertSparql(Person person) {
         return NamedSparqlSupplier.of("insert", () -> Queries.INSERT(PERSON_ID.isA(iri(D.Person))
                 .andHas(iri(AB.firstName), PERSON_FIRST_NAME)
-                .andHas(iri(AB.lastName), PERSON_LAST_NAME))
-                //TODO agregar correo y telefono
+                .andHas(iri(AB.lastName), PERSON_LAST_NAME)
+                .andHas(iri(AB.homeTel), PERSON_HOME_TEL)
+                .andHas(iri(AB.email), PERSON_EMAIL))
                 .getQueryString());
     }
 

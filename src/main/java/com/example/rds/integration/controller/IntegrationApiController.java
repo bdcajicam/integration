@@ -35,7 +35,10 @@ public class IntegrationApiController {
 
     @PostMapping(value = "/create")
     ResponseEntity<Person> createPerson(@RequestBody Person person) {
-        return new ResponseEntity<>(personService.createPerson(person.getFirstName(), person.getLastName()), HttpStatus.OK);
+        return new ResponseEntity<>(personService.createPerson(person.getFirstName(),
+                                                                person.getLastName(),
+                                                                person.getHomeTel(),
+                                                                person.getEmail()), HttpStatus.OK);
     }
 
 }

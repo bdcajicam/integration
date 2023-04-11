@@ -10,9 +10,13 @@ type Person {
     id: ID!
     firstName: String
     lastName: String
+    homeTel: String
+    email: String
 }
 
 input PersonInput {
     firstName: String
     lastName: String
+    homeTel: String
+    email: String
 }

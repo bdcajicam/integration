@@ -5,7 +5,6 @@ import com.example.rds.integration.model.Person;
 import org.eclipse.rdf4j.model.IRI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,10 +16,12 @@ public class PersonService {
     private PersonDao personDao;
 
     //@Transactional
-    public Person createPerson(String firstName, String lastName) {
+    public Person createPerson(String firstName, String lastName, String homeTel, String email) {
         Person person = new Person();
         person.setFirstName(firstName);
         person.setLastName(lastName);
+        person.setHomeTel(homeTel);
+        person.setEmail(email);
         return personDao.save(person);
     }
 

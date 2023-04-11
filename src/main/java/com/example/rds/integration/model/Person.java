@@ -16,9 +16,13 @@ public class Person {
     public static final Variable PERSON_ID = SparqlBuilder.var("person_id");
     public static final Variable PERSON_FIRST_NAME = SparqlBuilder.var("person_firstName");
     public static final Variable PERSON_LAST_NAME = SparqlBuilder.var("person_lastName");
+    public static final Variable PERSON_HOME_TEL = SparqlBuilder.var("person_homeTel");
+    public static final Variable PERSON_EMAIL = SparqlBuilder.var("person_email");
     private IRI id;
     private String firstName;
     private String lastName;
+    private String homeTel;
+    private String email;
 
     @Override
     public boolean equals(Object o) {

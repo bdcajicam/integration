@@ -21,9 +21,9 @@ public class PersonController {
 
     @MutationMapping
     Person addPerson(@Argument PersonInput person) {
-        return personService.createPerson(person.firstName, person.lastName);
+        return personService.createPerson(person.firstName, person.lastName, person.homeTel, person.email);
     }
 
-    record PersonInput(String firstName, String lastName) {}
+    record PersonInput(String firstName, String lastName, String homeTel, String email) {}
 
 }
