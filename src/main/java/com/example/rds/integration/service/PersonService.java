@@ -1,6 +1,7 @@
 package com.example.rds.integration.service;
 
 import com.example.rds.integration.dao.PersonDao;
+import com.example.rds.integration.model.CustomIRI;
 import com.example.rds.integration.model.Person;
 import org.eclipse.rdf4j.model.IRI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,11 @@ public class PersonService {
     public IRI addPerson(Person person) {
         return personDao.saveAndReturnId(person);
     }
+
+    public void updatePerson(Person person) {
+        personDao.saveAndReturnId(person);
+    }
+
+    public void deletePerson(CustomIRI id) { personDao.delete(id); }
 
 }

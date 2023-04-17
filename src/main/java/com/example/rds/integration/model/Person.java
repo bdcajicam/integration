@@ -2,7 +2,6 @@ package com.example.rds.integration.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.eclipse.rdf4j.model.IRI;
 import org.eclipse.rdf4j.sparqlbuilder.core.SparqlBuilder;
 import org.eclipse.rdf4j.sparqlbuilder.core.Variable;
 
@@ -18,7 +17,7 @@ public class Person {
     public static final Variable PERSON_LAST_NAME = SparqlBuilder.var("person_lastName");
     public static final Variable PERSON_HOME_TEL = SparqlBuilder.var("person_homeTel");
     public static final Variable PERSON_EMAIL = SparqlBuilder.var("person_email");
-    private IRI id;
+    private CustomIRI id;
     private String firstName;
     private String lastName;
     private String homeTel;

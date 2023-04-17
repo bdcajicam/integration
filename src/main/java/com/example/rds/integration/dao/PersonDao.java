@@ -1,6 +1,7 @@
 package com.example.rds.integration.dao;
 
 import com.example.rds.integration.model.AB;
+import com.example.rds.integration.model.CustomIRI;
 import com.example.rds.integration.model.D;
 import com.example.rds.integration.model.Person;
 import org.eclipse.rdf4j.model.IRI;
@@ -42,7 +43,7 @@ public class PersonDao extends SimpleRDF4JCRUDDao<Person, IRI>  {
     //Convierte el parámetro querySolution en una instancia de la entidad
     protected Person mapSolution(BindingSet querySolution) {
         Person person = new Person();
-        person.setId(QueryResultUtils.getIRI(querySolution, PERSON_ID));
+        person.setId(new CustomIRI(QueryResultUtils.getString(querySolution, PERSON_ID)));
         person.setFirstName(QueryResultUtils.getString(querySolution, PERSON_FIRST_NAME));
         person.setLastName(QueryResultUtils.getString(querySolution, PERSON_LAST_NAME));
         //Valores opcionales
